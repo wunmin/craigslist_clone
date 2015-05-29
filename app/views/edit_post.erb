@@ -1,0 +1,27 @@
+<h1>Edit your post</h1>
+
+<form action="/categories/<%= @post.category.id %>/posts/<%= @post.id %>" method="post">
+  <input name="_method" type="hidden" value="put">
+  Title: <input type="text" name="post[title]" value="<%= @post.title %>">
+  <br/><br/>
+  Price: <input type="text" name="post[price]" value="<%= @post.price %>">
+  <br/><br/>
+  Email: <input type="text" name="post[email]" value="<%= @post.email %>">
+  <br/><br/>
+  Category:
+        <select name="post[category_id]">
+         <% @categories.each do |category| %>
+            <% if category.name == @post_cat.name %>
+              <option value="<%= category.id %>" selected> <%= category.name %></option>
+            <% else %>
+              <option value="<%= category.id %>"> <%= category.name %>
+              </option>
+            <% end %>
+          <% end %>
+        </select>
+  <br/><br/>
+  Description: <textarea rows="5" name="post[description]"><%= @post.description %></textarea>
+  <br/><br/>
+  <input type="submit" value="Update!">
+</form>
+
